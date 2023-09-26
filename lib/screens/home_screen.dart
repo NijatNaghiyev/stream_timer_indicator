@@ -23,7 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
         timeDuration--;
         if (timeDuration < 0) {
           timer.cancel();
-          streamController.close();
         }
       },
     );
@@ -33,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void dispose() {
     super.dispose();
     streamController.close();
+    textEditingController.dispose();
   }
 
   @override
