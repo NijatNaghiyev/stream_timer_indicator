@@ -16,14 +16,12 @@ class _HomeScreenState extends State<HomeScreen> {
   final StreamController<int> streamController = StreamController<int>();
 
   Future<void> timer({required int timeDuration}) async {
-    timeDuration += 1;
     Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
-        timeDuration--;
         streamController.sink.add(timeDuration);
-        setState(() {});
-        if (timeDuration <= 0) {
+        timeDuration--;
+        if (timeDuration < 0) {
           timer.cancel();
           streamController.close();
         }
